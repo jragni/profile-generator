@@ -1,0 +1,24 @@
+{
+  "name": "profile-gen",
+  "version": "1.0.0",
+  "description": "Github profile generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jragni/profile-generator.git"
+  },
+  "author": "Jhensen Ray Agni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jragni/profile-generator/issues"
+  },
+  "homepage": "https://github.com/jragni/profile-generator#readme",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "express": "^4.17.1",
+    "inquirer": "^7.0.3"
+  }
+}
