@@ -1,6 +1,6 @@
 
 
-function generateHTML(color) {
+function generateHTML(color, data) {
   const colors = {
     green: {
       wrapperBackground: "#E6E1C3",
@@ -27,16 +27,17 @@ function generateHTML(color) {
       photoBorderColor: "white"
     }
   };
-  return `<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
-      <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>Document</title>
-      <style>
+  
+  let string = `<!DOCTYPE html>
+  <html lang="en">
+     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+        <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
+        <title>Document</title>
+        <style>
           @page {
             margin: 0;
           }
@@ -138,7 +139,7 @@ function generateHTML(color) {
          padding-left: 100px;
          padding-right: 100px;
          }
-
+  
          .row {
            display: flex;
            flex-wrap: wrap;
@@ -146,12 +147,12 @@ function generateHTML(color) {
            margin-top: 20px;
            margin-bottom: 20px;
          }
-
+  
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[color].headerBackground};
-           color: ${colors[color].headerColor};
+           background-color:  ${colors[color].headerBackground};
+           color:${colors[color].headerColor};
            margin: 20px;
          }
          
@@ -159,19 +160,58 @@ function generateHTML(color) {
          flex: 1;
          text-align: center;
          }
-
+  
          a, a:hover {
          text-decoration: none;
          color: inherit;
          font-weight: bold;
          }
-
+  
          @media print { 
           body { 
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+      </head>
+  
+      <body>
+          <header class="card">
+              <img src="${data.img}">
+              <h1>Hi!</h1>
+              <h1>My name is ${data.name}</h1>
+          </header>
+          <main>
+              <p>${data.bio}</p>
+              <div class="container">
+                  <div class="row">
+                      <div class="col">
+                          <h2> Public Repositories</h2>
+                          <p>${data.repos}</p>
+                      </div>
+                      <div class="col">
+                          <h2>${data.followers}</h2>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <h2> GitHub Stars</h2>
+                          <p> ${data.stars}</p>
+                      </div>
+                      <div class="col">
+                          <h2> Following</h2>
+                          <p> ${data.following}</p>
+                      </div>
+                  </div>
+  
+              </div>
+          </main>
+          <footer></footer>
+      </body>
+  </html> `
+
+  return string;
+      }
+      
 
 module.exports = generateHTML;

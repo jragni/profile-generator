@@ -1,6 +1,7 @@
 const userData = require("./getInputData");  // NOTE: userData must be instantiated as a function in order to work properly. 
 const gitPull = require("./gitCalls"); 
-const htmlGenerator = require("./generateHTML");
+const generateHTML = require("./generateHTML");
+const pdf = require('html-pdf');
 
 function writeToFile(fileName, data) {
  
@@ -17,29 +18,37 @@ async function init() {
     const gitUserData = await gitPull(profileName); 
     
     //extract user info and generate html
-    gitUserDataExtract(gitUserData,favoriteColor);
+    const generate =  await gitUserDataExtract(gitUserData, favoriteColor);
 
 }
 
 
 init();
 
-function gitUserDataExtract(u_data,color){
-    const userName = u_data.login;  // User name
-    const userProfileImage = u_data.avatar_url; // profile image
+async function gitUserDataExtract(u_data,color){
+    const data = {};
+
+    data.name = u_data.login;  // User name
+    data.img = u_data.avatar_url; // profile image
 
     //links 
-    const profileURL = u_data.html_url;  // User GitHub profile
-    const userBlog = u_data.blog; // User blog
-    const userLocation = u_data.location; // User location
+    data.url = u_data.html_url;  // User GitHub profile
+    data.blog = u_data.blog; // User blog
+    data.location = u_data.location; // User location
 
     // Profile stats
-    const userBio = u_data.bio;
-    const userPublicRepo = u_data.public_repos;
-    const userFollowers = u_data.followers_url;
-    const userGitHubStars = u_data.starred_url;
-    const userFollowing = u_data.following;
-    var htmlPage = htmlGenerator(color);
+    data.bio = u_data.bio;
+    data.repos = u_data.public_repos;
+    data.followers = u_data.followers_url;
+    data.stars = u_data.starred_url;
+    data.following = u_data.following; 
+ 
+
+    var htmlPage = await generateHTML(color,data);
+    console.log(typeof htmlPage)
+    var solution = await pdf.create(htmlPage, {format:'Letter'}).toFile('./test.pdf', (err,res)=>{
+        if(err) return console.log(err);
+    })
 
 }
 // Profile image
