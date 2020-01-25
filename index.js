@@ -45,10 +45,11 @@ async function gitUserDataExtract(u_data,color){
  
 
     var htmlPage = await generateHTML(color,data);
-    console.log(typeof htmlPage)
+    console.log('Building profile, please wait...');
     var solution = await pdf.create(htmlPage, {format:'Letter'}).toFile('./test.pdf', (err,res)=>{
         if(err) return console.log(err);
     })
+    console.log('Complete...')
 
 }
 // Profile image

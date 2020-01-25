@@ -176,42 +176,47 @@ function generateHTML(color, data) {
       </head>
   
       <body>
-          <header class="card">
+          <header class="card photo-header">
               <img src="${data.img}">
-              <h1>Hi!</h1>
+              <h1 >Hi!</h1> 
               <h1>My name is ${data.name}</h1>
           </header>
           <main>
-              <p>${data.bio}</p>
-              <div class="container">
+              <h3>${data.bio}</h3>
+              <section class="container">
                   <div class="row">
-                      <div class="col">
+  
+                      <div class="col card">
                           <h2> Public Repositories</h2>
-                          <p>${data.repos}</p>
+                          <a>${data.repos}</a>
                       </div>
-                      <div class="col">
-                          <h2>${data.followers}</h2>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col">
-                          <h2> GitHub Stars</h2>
-                          <p> ${data.stars}</p>
-                      </div>
-                      <div class="col">
-                          <h2> Following</h2>
-                          <p> ${data.following}</p>
+  
+                      <div class="col card">
+                          <h2>Followers</h2>
+                          <a>${data.followers}</a>
                       </div>
                   </div>
   
-              </div>
+                  <div class="row">
+  
+                      <div class="col card">
+                          <h2> GitHub Stars</h2>
+                          <a> ${data.stars}</a>
+                      </div>
+  
+                      <div class="col card">
+                          <h2> Following</h2>
+                          <a> ${data.following}</p>
+                      </div>
+  
+                  </div>
+              </section>
           </main>
-          <footer></footer>
       </body>
-  </html> `
+  </html>`
 
   return string;
-      }
+}
       
 
 module.exports = generateHTML;
