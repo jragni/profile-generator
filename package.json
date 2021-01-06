@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/jragni/profile-generator#readme",
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "handlebars": "^4.7.2",
     "html-pdf": "^2.2.0",
